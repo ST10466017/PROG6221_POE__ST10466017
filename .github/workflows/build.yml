@@ -33,4 +33,4 @@ jobs:
         name: ZoroBot
         path: bin/Release/net6.0/
 
-        Add CI workflow for Zoro bot
+       
