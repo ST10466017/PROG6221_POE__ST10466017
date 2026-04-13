@@ -1,0 +1,36 @@
+name: Build Zoro Cybersecurity Bot
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+    
+    - name: Add NuGet package
+      run: dotnet add package System.Windows.Extensions --version 7.0.0
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build project
+      run: dotnet build --configuration Release
+    
+    - name: Upload build
+      uses: actions/upload-artifact@v4
+      with:
+        name: ZoroBot
+        path: bin/Release/net6.0/
+
+        Add CI workflow for Zoro bot
